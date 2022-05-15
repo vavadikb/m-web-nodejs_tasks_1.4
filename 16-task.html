@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            font-size: 20em;
+        }
+        div {
+            font-family: 'Inconsolata', monospace;
+            text-align: center;
+            font-size: 50px;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-color: rgba(90,90,90,0.7);
+        }
+        div:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="button" onclick="hide()">click me!</button>
+    <div id="block" onclick="show()">oh man, you're really cool, have a nice day)</div>
+
+    <script>
+        function hide() {
+            document.getElementById('block').style.display = 'block'
+            document.documentElement.style.overflow = 'hidden'
+        }
+        function show() {
+            document.getElementById('block').style.display = 'none'
+            document.documentElement.style.overflow = 'scroll'
+        }
+    </script>
+</body>
+</html>
