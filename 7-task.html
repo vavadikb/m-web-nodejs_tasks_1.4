@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #div{
+            display: none;
+            width: 50px;
+            height: 20px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <label for="input">Focus here</label>
+    <input type="text" id="input" onfocusin="show()" onfocusout="hide()" oninput="check()">
+    <script>
+    function show() {
+        document.getElementById('div').style.display = "block"
+    }
+    function hide() {
+        document.getElementById('div').style.display = "none"
+    }
+    function check() {
+        if(document.getElementById('input').value !== '') {
+            hide()
+        }else{
+            show()
+        }
+    }
+    </script>
+</body>
+</html>
