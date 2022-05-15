@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        div > div{
+            margin-left: 10px;
+            margin: 50px;
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+        button{
+            position: relative;
+            margin-left: 10px;
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        button:hover{
+            background-color: brown;
+        }
+        #block2{
+            background-color: brown;
+        }
+        #block3{
+            visibility: visible;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="blocks">
+        <div id="block1"></div>
+        <div id="block2"></div> 
+        <div id="block3"></div>       
+    </div>
+
+    <button id="btn1" onclick="cssa()">css</button>
+    <button id="btn2" onclick="jsa()">JS</button> 
+    <button id="btn3" onclick="cssJS()">Css + JS</button>
+    <script>
+        document.getElementById("block3").style.visibility = 'visible'
+        function cssa(){
+            let btn1 = document.getElementById("block1")
+            btn1.style.display = 'none'
+        }
+        function jsa(){
+            let blocks = document.getElementById("blocks")            
+            let btn2 = document.getElementById("block2")
+            blocks.removeChild(btn2)
+            console.log(btn2)
+        }
+        function cssJS(){
+            if(document.getElementById("block3").style.visibility=='visible'){
+                document.getElementById("block3").style.visibility = 'hidden'
+            }
+            else{
+                document.getElementById("block3").style.visibility='visible'
+            }
+        }
+        function js(){}
+        function css(){}
+    </script>
+</body>
+</html>
