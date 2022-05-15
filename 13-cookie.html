@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task13</title>
+</head>
+<body>
+    <h1 id="mainText">CookieStorage</h1>
+    <textarea  placeholder="write text here" onkeypress="saveInf('1',firstEl.value)" onload="loadCookieInf('1',firstEl)" id="1" cols="25"  rows="20"></textarea>
+    <textarea  placeholder="write text here" onkeypress="saveInf('2',secondEl.value)" onload="loadCookieInf('2',secondEl)" id="2" cols="25" rows="20"></textarea>
+    <textarea  placeholder="write text here" onkeypress="saveInf('3',thirdEl.value)" onload="loadCookieInf('3',thirdEl)" id="3" cols="25" rows="20"></textarea>
+    <script>
+        let firstEl = document.getElementById("1")
+        let secondEl = document.getElementById("2")
+        let thirdEl = document.getElementById("3")
+
+        function saveInf(name, value) {
+            console.log(`SAVE! ${value}`)
+            document.cookie = `${name}=${encodeURI(value)}`
+        }
+
+        firstEl.onload =  loadCookieInf("3",firstEl);
+        secondEl.onload = loadCookieInf("2",secondEl);
+        thirdEl.onload = loadCookieInf("1",thirdEl);
+
+        function loadCookieInf(name, el) {
+            const arrayCookie = document.cookie.split(" ").map(item => {
+                let res = item.match(/[A-Za-z0-9\=\d+]+/g)
+                return res;
+            }).flat()
+
+            for(let item of arrayCookie) {
+                const num = item.split("=")[0]
+                if(num === el.id) {
+                    const value = item.split("=")[1]
+                    el.value = value
+                }
+            }
+        }
+    </script>
+</body>
+</html>
