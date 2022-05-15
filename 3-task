@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .block{
+            visibility: visible;
+            top: 30%;
+            margin-left: 20px;
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="block" id="div1"></div>
+    <div class="block" id="div2"></div>
+    <div class="block" id="div3"></div>
+    <div class="block" id="div4"></div>
+    <div class="block" id="div5"></div>
+    <button onclick="myFunction()">Click me</button>    
+    <script>
+        let bolocks = document.getElementsByClassName("block")
+        let visible = true
+        function myFunction(){
+            if (visible===true){
+                for(let i = 1; i<=bolocks.length;i++){
+                    document.getElementById(`div${i}`).style.visibility = 'hidden'
+                }
+                visible=false
+            }
+            else{
+                for(let i = 1; i<=bolocks.length;i++){
+                    document.getElementById(`div${i}`).style.visibility = 'visible'
+                }
+                visible=true    
+            }
+        }      
+    </script>
+</body>
+</html>
