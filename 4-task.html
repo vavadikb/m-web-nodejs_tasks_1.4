@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task4</title>
+    <style>
+    .paragraphs, .something, #link {
+       display: none;
+    }
+    </style>
+</head>
+<body>
+    <p class="paragraphs">a lot of text</p>
+    <p class="paragraphs">text</p>
+    <p class="paragraphs">Some text</p>
+
+    <a href="https://quizterra.com/ru/kakaa-ty-sobaka" id="link">Don't click)</a>
+
+    <h1 class="something">SOMETHING</h1>
+    <h2 class="something">COOL</h2>
+
+    <label for="input">Enter query selector</label>
+    <input type="text" id="input">
+    <button id="button" onclick="search()">Ok</button>
+        <script>
+        let status = 0
+        function search() {
+            const request = document.getElementById('input').value
+            const response = document.querySelectorAll(request)
+            if(status === 0) {
+                for(let item of response) {
+                    item.style.display = "block";
+                }
+                status = 1
+            }else{
+                for(let item of response) {
+                    item.style.display = "none";
+                }
+                status = 0
+            }
+        }
+   </script>
+</body>
+
+</html>
