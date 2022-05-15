@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag'n Drop (TASK 18)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Dongle', sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            background: rgb(180, 152, 29);
+        }
+
+        .area {
+            border: 0.4vh dashed #fff;
+            height: 50vh;
+            width: 70vh;
+            border-radius: 1vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        .icon {
+            font-size: 10vh;
+            transition: 0.3s;
+        }
+
+        .area header {
+            display: inline-block;
+            font-size: 7vh;
+            font-weight: 400;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 30vh;
+        }
+
+        .area span {
+            font-size: 5vh;
+            font-weight: 400;
+        }
+
+        .area input {
+            padding: 0.5vh 4vh;
+            font-size: 3vh;
+            border-radius: 1vh;
+            color: rgb(180, 152, 29);
+            border: 2px solid white;
+            transition: color 500ms, background-color 500ms;
+        }
+
+        .area input:hover {
+            color: white;
+            background-color: rgb(180, 152, 29)
+        }
+
+        .icon.active {
+            transform: translateY(-20px);
+            font-size: 12vh;
+        }
+
+        .area img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 1vh;
+        }
+        #input{
+            position: relative;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="area">
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <header>Drag & Drop</header>
+        <span>OR</span>
+        <input type="file" id="input" name="Browse file">
+    </div>
+    <script>
+        const dropArea = document.querySelector(".area"),   
+            icon = document.querySelector(".icon"),
+            image = document.querySelector(".icon i"),
+            header = document.querySelector(".area header")
+        
+        let file;
+
+        dropArea.addEventListener("dragover", (event) => {
+            event.preventDefault();
+            icon.classList.add("active")
+        })
+
+        dropArea.addEventListener("dragleave", (event) => {
+            icon.classList.remove("active")
+        })
+
+        dropArea.addEventListener("drop", (event) => {
+            event.preventDefault();
+            file = event.dataTransfer.files[0];
+            let imagesTypes = ["image/jpeg", "image/jpg", "image/png"]
+            if(imagesTypes.includes(file.type)) {
+                let fileReader = new FileReader()
+                fileReader.onload = () => {
+                    let fileURL = fileReader.result;
+                    let imgTag = `<img src="${fileURL}" alt="your image">`;
+                    dropArea.innerHTML = imgTag;
+                }
+                fileReader.readAsDataURL(file)
+            }else{
+                header.innerText = file.name
+                icon.classList.remove("active")
+                image.setAttribute("class", "icon fas fa-check")
+            }
+        })
+    </script>
+</body>
+</html>
