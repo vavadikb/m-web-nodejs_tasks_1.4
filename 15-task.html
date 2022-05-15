@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            
+        }
+        #big{
+            display: flex;
+            width: 500px;
+            height: 500px;
+            background-color: blue;
+            align-items: center;
+            justify-content: center;
+        }
+        #small{
+            width: 250px;
+            height: 250px;
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div id="big" >
+        <div id="small"></div>
+    </div>
+    <script>
+        let bigger = document.getElementById("big")
+        let smaller = document.getElementById("small")
+
+        bigger.addEventListener("click",() => alert("BIIIIG"))      
+        smaller.addEventListener("click",(event) => {
+            alert("small")
+            event.stopPropagation()
+        }) 
+    </script>
+</body>
+</html>
