@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task13</title>
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+<h1 id="mainText">LocalStorage</h1>
+<textarea  placeholder="write text here" onkeypress="saveInf('1',firstEl.value)" id="1" cols="25"  rows="20"></textarea>
+<textarea  placeholder="write text here" onkeypress="saveInf('2',secondEl.value)" id="2" cols="25" rows="20"></textarea>
+<textarea  placeholder="write text here" onkeypress="saveInf('3',thirdEl.value)" id="3" cols="25" rows="20"></textarea>
+<form>
+    <select style="margin-top: 20px" id="type" onchange="typeSelect()">
+        <option value="LocalStorage">localStorage</option>
+        <option value="SessionStorage">sessionStorage</option>
+    </select>
+</form>
+<button style="margin-top: 20px" onclick="clearInf()">clear Inf</button>
+<script>
+    let type = localStorage;
+    let firstEl = document.getElementById("1")
+    let secondEl = document.getElementById("2")
+    let thirdEl = document.getElementById("3")
+
+    firstEl.onload = loadInf('1', firstEl)
+    secondEl.onload = loadInf('2', secondEl)
+    thirdEl.onload = loadInf('3', thirdEl)
+
+    function typeSelect() {
+        let value = document.getElementById('type').value
+        document.getElementById('mainText').innerText = value
+        console.log(value)
+
+        if(value === 'SessionStorage') {
+            type = sessionStorage
+        }else{
+            type = localStorage
+        }
+
+        firstEl.onload = loadInf('1', firstEl)
+        secondEl.onload = loadInf('2', secondEl)
+        thirdEl.onload = loadInf('3', thirdEl)
+    }
+
+    function saveInf(name, value) {
+        type.setItem(name, value)
+    }
+    function loadInf(name, el) {
+        if(type.getItem(name) !== null) el.value = type.getItem(name)
+    }
+    function clearInf() {
+        type.clear()
+    }
+</script>
+</body>
+</html>
